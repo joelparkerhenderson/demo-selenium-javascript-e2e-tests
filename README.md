@@ -126,12 +126,21 @@ Or you can run with Node explicity:
 node test.js
 ```
 
+## Update
+
+Run:
+
+```sh
+npm install -g npm-check-updates
+ncu -u 
+npm install
+```
 
 ## Tracking
 
-  * Package: demo-selenium-javasript-e2e-tests
-  * Version: 2.0.0
+  * Package: demo-selenium-javascript-e2e-tests
+  * Version: 2.0.1
   * Created: 2019-11-02T00:00:00Z
-  * Updated: 2021-10-08T00:19:55Z
+  * Updated: 2025-02-11T23:48:54Z
   * License: GPL-2.0-or-greater or for custom license contact us
   * Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)

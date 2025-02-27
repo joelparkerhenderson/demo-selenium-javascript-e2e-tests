@@ -1,8 +1,8 @@
-const support = require('./support')
-const assert = require('assert')
-const {By, Key} = require('selenium-webdriver')
+import * as support from './support.js';
+import assert from 'assert';
+import {By, Key} from 'selenium-webdriver';
 
-module.exports = async function test(index){
+export default async function (index){
     // Launch a web browser
     let driver = await support.makeDriver()
     await driver.get("https://google.com")

@@ -38,7 +38,7 @@
 //
 //   * `test_*.js` are the individual test files for end-to-end tests
 //
-//   * `support.js` has helpers and utilties for launching browsers
+//   * `support.js` has helpers and utilities for launching browsers
 //
 //
 // ## What this script does
@@ -82,29 +82,39 @@
 // }
 // ```
 //
+// ## Update
+//
+// Run:
+//
+// ```sh
+// npm install -g npm-check-updates
+// ncu -u 
+// npm install
+// ```
+//
 // ## Tracking
 //
-//   * Package: demo-selenium-javasript-e2e-tests
-//   * Version: 2.0.0
+//   * Package: demo-selenium-javascript-e2e-tests
+//   * Version: 2.0.1
 //   * Created: 2019-11-02T00:00:00Z
-//   * Updated: 2021-10-08T00:19:55Z
+//   * Updated: 2025-02-11T23:48:54Z
 //   * License: GPL-2.0-or-greater or for custom license contact us
 //   * Contact: Joel Parker Henderson (joel@joelparkerhenderson.com)
 ///
  
 // Read a directory recursively.
-const readdirp = require('readdirp');
+import readdirp from 'readdirp';
 
 // Process all the test files in the test directory.
 async function test(){
     var index = 0;
-    for await (const entry of readdirp(__dirname, { 
-        fileFilter: 'test_*.js', 
-        directoryFilter: [ '!.*', '!node_modules' ] 
+    console.info(process.env.PWD);
+    for await (const entry of readdirp(process.env.PWD, { 
+        fileFilter: (f) => f.basename.match(/test_.*\.js/),
+        directoryFilter: (d) => { !d.basename.startsWith(".") && !d.basename == "node_modules"}
     })) {
-        console.info(`${index} ${entry.fullPath}`);
-        let test = require(entry.fullPath)
-        await test(index)
+        console.info(`${index} ${entry.fullPath}`)
+        import(entry.fullPath).then(test(index))
         index += 1
     }
 }

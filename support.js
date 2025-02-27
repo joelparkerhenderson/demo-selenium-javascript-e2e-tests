@@ -3,15 +3,15 @@
 ///
 
 // Initialize Selenium Webdriver, which is the manager.
-const Webdriver = require('selenium-webdriver')
+import Webdriver from 'selenium-webdriver'
 
 // Initialize Selenium Webdriver for Google Chrome web browser.
-const Chrome = require('selenium-webdriver/chrome')
+import Chrome from 'selenium-webdriver/chrome.js'
 
 // Initialize helpful Node utilities.
-const fs = require("fs");
-const path = require("path");
-const os = require('os'); 
+import fs from 'fs'
+import os from 'os'
+import path from 'path'
 
 // Make a new webdriver builder, which is a promise.
 //
@@ -25,7 +25,7 @@ async function makeDriver(){
     .build()
 }
 
-// Make driver capabilties for the driver function `withCapabilties`.
+// Make driver capabilities for the driver function `withCapabilities`.
 //
 // This implementation is for Chrome.
 //
@@ -57,7 +57,7 @@ async function makeChromeOptions(){
 // This function is called by `makeChromeOptions`.
 //
 // This implementation uses a typical JavaScript design pattern
-// to create a globally-accessibe variable that auto-increments.
+// to create a globally-accessible variable that auto-increments.
 //
 var makeChromeOptionsRemoteDebuggingPort = (function () {
     var i = process.env.PORT || 10000
@@ -81,8 +81,7 @@ async function makeTemporaryUserDataDir(){
     ).catch(console.error);
 }
 
-// Exports
-module.exports = {
+export default {
     makeDriver,
     makeCapabilities,
     makeChromeOptions,
